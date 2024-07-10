@@ -150,6 +150,8 @@
     }
     .innernote-main-optinner-cnt{
         width: 100%;
+        display: flex;
+        justify-content: space-between;
         svg{
             font-size: 10px;
         }
@@ -159,6 +161,7 @@
     }
     .innernote-main-opt-cnt {
         flex-direction: column;
+        gap: 5px;
     }
     .innernote-main-opt-cnt-two {
         button {

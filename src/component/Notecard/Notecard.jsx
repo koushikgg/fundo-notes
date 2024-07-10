@@ -222,7 +222,7 @@ function Notecard({ noteDetails, updateList, typeOfContent }) {
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
                 >
-                    <Box sx={style} style={noteDetails.color ? { backgroundColor: noteDetails.color } : { backgroundColor: "#ffffff" }}>
+                    <Box sx={style} style={noteDetails.color ? { backgroundColor: noteDetails.color } : { backgroundColor: "#ffffff" }} id="innernotecard-inner-modal-main-cnt">
                         <div className="innernotecard-inner-main-cnt">
                             <div className='innernotecard-main-title-cnt'>
                                 <input className='notecard-title-inp'  type="text" value={title} onChange={(e) => setTitle(e.target.value)} style={noteDetails.color ? { backgroundColor: noteDetails.color } : { backgroundColor: "#ffffff" }} />

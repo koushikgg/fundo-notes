@@ -312,6 +312,23 @@ svg:hover {
     .notecard-color-optn-cnt {
         width: 28px;
     }
+
+    #innernotecard-inner-modal-main-cnt{
+        width: 85%;
+        border-radius: 8px;
+        padding: 14px;
+    }
+
+    .innernotecard-inner-main-cnt {
+        width: 100%;
+    }
+    .notecardcard-opt-cnt{
+        width: 65%;
+        justify-content: space-between;
+        svg{
+            font-size: 20px;
+        }
+    }
 }
 
 @media only screen and (min-width:300px) and (max-width:599px) {
@@ -329,5 +346,25 @@ svg:hover {
 
     .notecard-color-optn-cnt {
         width: 28px;
+    }
+    #innernotecard-inner-modal-main-cnt{
+        width: 85%;
+        border-radius: 8px;
+        padding:10px;
+    }
+    .innernotecard-main-opt-cnt {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .innernotecard-inner-main-cnt {
+        width: 100%;
+    }
+    .notecardcard-opt-cnt{
+        width: 90%;
+        justify-content: space-between;
+        svg{
+            font-size: 15px;
+        }
     }
 }
