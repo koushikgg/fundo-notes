@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { LoginApi } from '../../services/UserService';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
-
+import './Login.scss'
 function Login() {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');

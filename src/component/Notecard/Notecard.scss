@@ -87,12 +87,13 @@ svg:hover {
 }
 
 .css-6hp17o-MuiList-root-MuiMenu-list {
-    position:none;
+    position: none;
     width: 200px;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
 }
+
 // .css-6hp17o-MuiList-root-MuiMenu-list {}
 
 .col1 {
@@ -124,7 +125,7 @@ svg:hover {
 
 .col4 {
     width: 40px;
-    height: 40px;    
+    height: 40px;
     border-radius: 50%;
     background-color: #FFF8B8;
     border: 1px solid #FFF8B8;
@@ -196,7 +197,7 @@ svg:hover {
     border: 1px solid #EFEFF1;
 }
 
-.innernotecard-inner-main-cnt{
+.innernotecard-inner-main-cnt {
     width: 95%;
     border-radius: 8px;
     display: flex;
@@ -204,46 +205,51 @@ svg:hover {
     gap: 10px;
 }
 
-.innernotecard-main-title-cnt{
+.innernotecard-main-title-cnt {
     display: flex;
     justify-content: space-between;
 
-    .notecard-title-inp{
+    .notecard-title-inp {
         border: none;
         outline: none;
         font-size: 17px;
     }
 }
 
-.innernotecard-main-inp-cnt{
+.innernotecard-main-inp-cnt {
     color: #202124;
-    input{
+
+    input {
         border: none;
         height: 46px;
         font-size: 14px;
     }
 }
-.notecardcard-opt-cnt{
-    display: flex;
-} 
 
-.innernotecard-main-opt-cnt{
+.notecardcard-opt-cnt {
+    display: flex;
+}
+
+.innernotecard-main-opt-cnt {
     position: sticky;
     bottom: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.innernotecard-color-menu-opt-cnt{
+
+.innernotecard-color-menu-opt-cnt {
     display: flex;
     align-items: center;
 }
-.notecard-color-optn-cnt{
+
+.notecard-color-optn-cnt {
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
 }
+
 // .notecardcard-opt-cnt{
 //     display: flex;
 //     justify-content: space-between;
@@ -254,7 +260,7 @@ svg:hover {
 //     }
 // }
 
-.innernotecard-main-opt-cnt-one{
+.innernotecard-main-opt-cnt-one {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -262,9 +268,11 @@ svg:hover {
     height: 34px;
     margin: 0px 8px;
 }
-.innernotecard-first-opt{
+
+.innernotecard-first-opt {
     margin-left: 0px
 }
+
 // .css-i4bv87-MuiSvgIcon-root {
 //     font-size: 18px;
 // }
@@ -274,7 +282,7 @@ svg:hover {
 
 .notecard-color-menu {
     width: 250px;
-    display:flex;
+    display: flex;
     flex-wrap: wrap;
     gap: 5px;
 }
@@ -286,4 +294,40 @@ svg:hover {
     align-items: center;
     justify-content: space-around;
     width: auto;
+}
+
+@media only screen and (min-width:600px) and (max-width:1000px) {
+    .notecard-info-main-cnt {
+        width: 40.9%;
+    }
+
+    .notecard-info-inner-main-cnt {
+        width: 100%;
+    }
+
+    .notecard-main-opt-cnt-one {
+        margin: 0px 7.5px
+    }
+
+    .notecard-color-optn-cnt {
+        width: 28px;
+    }
+}
+
+@media only screen and (min-width:300px) and (max-width:599px) {
+    .notecard-info-main-cnt {
+        width: 94%;
+    }
+
+    .notecard-info-inner-main-cnt {
+        width: 102%;
+    }
+
+    .notecard-main-opt-cnt-one {
+        margin: 0px 7.5px
+    }
+
+    .notecard-color-optn-cnt {
+        width: 28px;
+    }
 }

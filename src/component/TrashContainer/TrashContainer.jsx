@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { trashNotesApi } from "../../services/NoteService";
 import Notecard from "../Notecard/Notecard";
-
+import './TrashContainer.scss'
 function TrashContainer() {
     const [notesList, setNotesList] = useState([])
     useEffect(() => {
@@ -21,7 +21,7 @@ function TrashContainer() {
     console.log(notesList);
     return (
         <>
-            <div style={{ width: "81.6%%", display: "flex", flexWrap: "wrap", gap: "15px", padding: "75px 3% 50px 15.4%" }}>
+            <div className="trash-main-cnt" >
                 {notesList.map((note, key) =>
                     <Notecard noteDetails={note} updateList={handleNotesList} typeOfContent={"trashContent"} />
                 )

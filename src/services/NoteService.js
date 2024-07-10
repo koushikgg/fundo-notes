@@ -2,6 +2,11 @@ import axios from "axios";
 
 const token =localStorage.getItem('AcessToken')
 const baseUrl="https://fundoonotes.incubation.bridgelabz.com/api/notes"
+const configForAddNotes = {
+    headers: {
+        "Content-Type": "multipart/form-data",
+    }
+}
 export const CreateNoteApi = async (data) =>{
     return await axios.post(`${baseUrl}/addNotes?access_token=${token}`,data)
 }
@@ -37,5 +42,5 @@ export const changeColorApi = async (data) =>{
 }
 
 export const updateNoteApi = async (data) => {
-    return await axios.post(`https://fundoonotes.incubation.bridgelabz.com/api/notes/updateNotes?access_token=${token}`,data)
+    return await axios.post(`https://fundoonotes.incubation.bridgelabz.com/api/notes/updateNotes?access_token=${token}`,data,configForAddNotes)
 }

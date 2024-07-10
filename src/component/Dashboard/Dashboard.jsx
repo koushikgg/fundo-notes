@@ -42,7 +42,7 @@ function Dashboard() {
               <DeleteIcon className='dash-sidebar-opt-logo' />
             </div>
           </div>
-          <div>
+          <div className='dashboard-child-main-cnt'>
             <Outlet />
           </div>
         </div>
@@ -52,4 +52,3 @@ function Dashboard() {
 }
 
 export default Dashboard;
-

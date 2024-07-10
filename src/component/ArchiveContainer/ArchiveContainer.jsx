@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { archiveNotesApi, updateArchiveApi } from "../../services/NoteService";
 import Notecard from "../Notecard/Notecard";
 import Note from "../Note/Note";
+import './ArchiveContainer.scss'
 
 function ArchiveContainer() {
     const [notesList, setNotesList] = useState([]);
@@ -40,7 +41,7 @@ function ArchiveContainer() {
     }
     return (
         <>
-            <div style={{ width: "81.6%%", display: "flex", flexWrap: "wrap", gap: "15px", padding: "75px 3% 50px 15.4%" }}>
+            <div className="archive-main-cnt">
                 {notesList?.map((note, key) =>
                     <Notecard noteDetails={note} updateList={handleNotesList} typeOfContent={"archiveContent"} />
                 )}

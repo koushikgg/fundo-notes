@@ -40,11 +40,10 @@ function Notecard({ noteDetails, updateList, typeOfContent }) {
     const open = Boolean(anchorEl);
     const openColorBox = Boolean(anchorE2);
     const [showNoteCard, setShowNoteCard] = useState(true);
-    const [openModal, setOpenModal] = React.useState(false);
-    const handleOpen = () => setOpenModal(true);
-    const handleClose = () => setOpenModal(false);
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('')
+    const [openModal, setOpenModal] = useState(false);
+    const [title, setTitle] = useState(noteDetails.title);
+    const [description, setDescription] = useState(noteDetails.description)
+    
 
     const handleClickMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -110,9 +109,10 @@ function Notecard({ noteDetails, updateList, typeOfContent }) {
             updateList(action, data);
         }
         if (action === "update") {
+            setOpenModal(!openModal)
             console.log("step1");
             await updateNoteApi({
-                "noteIdList": [data.id],
+                "noteId": data.id,
                 "title": title,
                 "description":description
             });
@@ -128,13 +128,13 @@ function Notecard({ noteDetails, updateList, typeOfContent }) {
         <>
             <div className='notecard-info-main-cnt'>
                 <div className='notecard-info-inner-main-cnt' style={noteDetails.color ? { backgroundColor: noteDetails.color } : { backgroundColor: "#ffffff" }}>
-                    <div className='notecard-info-txt-main-cnt' onClick={handleOpen}>
+                    <div className='notecard-info-txt-main-cnt' onClick={()=> setOpenModal(!openModal)}>
                         <div className='notecard-title-cnt'>
-                            <span onClick={handleOpen}>{noteDetails?.title}</span>
+                            <span onClick={()=>setOpenModal(!openModal)}>{noteDetails?.title}</span>
                             <PushPinOutlinedIcon />
                         </div>
                         <div className='notecard-notebody-cnt'>
-                            <p onClick={handleOpen}>{noteDetails?.description}</p>
+                            <p onClick={()=>setOpenModal(!openModal)}>{noteDetails?.description}</p>
                         </div>
                     </div>
                     <div className='notecard-opt-main-cnt'>
@@ -218,18 +218,18 @@ function Notecard({ noteDetails, updateList, typeOfContent }) {
                 </div>
                 <Modal
                     open={openModal}
-                    onClose={handleClose}
+                    onClose={()=>setOpenModal(!openModal)}
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
                 >
                     <Box sx={style} style={noteDetails.color ? { backgroundColor: noteDetails.color } : { backgroundColor: "#ffffff" }}>
                         <div className="innernotecard-inner-main-cnt">
                             <div className='innernotecard-main-title-cnt'>
-                                <input className='notecard-title-inp'  type="text" placeholder={`${noteDetails.title}`} onChange={(e) => setTitle(e.target.value)} style={noteDetails.color ? { backgroundColor: noteDetails.color } : { backgroundColor: "#ffffff" }} />
+                                <input className='notecard-title-inp'  type="text" value={title} onChange={(e) => setTitle(e.target.value)} style={noteDetails.color ? { backgroundColor: noteDetails.color } : { backgroundColor: "#ffffff" }} />
                                 <PushPinOutlinedIcon style={noteDetails.color ? { backgroundColor: noteDetails.color } : { backgroundColor: "#ffffff" }}/>
                             </div>
                             <div className='innernotecard-main-inp-cnt'>
-                                <input type="text"  placeholder={`${noteDetails.description}`} onChange={(e) => setDescription(e.target.value)} style={noteDetails.color ? { backgroundColor: noteDetails.color } : { backgroundColor: "#ffffff" }} />
+                                <input type="text" value={description}  onChange={(e) => setDescription(e.target.value)} style={noteDetails.color ? { backgroundColor: noteDetails.color } : { backgroundColor: "#ffffff" }} />
                             </div>
                             <div className='innernotecard-main-opt-cnt'>
                                 <div className='notecardcard-opt-cnt '>
@@ -287,4 +287,4 @@ function Notecard({ noteDetails, updateList, typeOfContent }) {
     );
 }
 
-export default Notecard;    
+export default Notecard;

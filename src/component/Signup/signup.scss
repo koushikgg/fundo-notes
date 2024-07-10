@@ -181,3 +181,134 @@ img{
     border: none;
     color: rgba(53, 52, 52, 0.986);;
 }
+
+@media  only screen and (min-width:300px) and (max-width:599px) {
+    .extra-option-cnt{
+        width: 100%;
+    }
+    .signup-main-cnt{
+        width: 80%;
+        margin-top: 6%;
+    }
+    .info-cnt{
+        width: 100%;
+        height: 564px;
+    }
+    .dummy {
+        gap: 15px
+    }
+    .info-details_main-cnt {
+        width: 53%;
+        padding: 20px;
+        padding-right: 10px;
+        padding-left: 13px;
+    }
+    .fundo-text-txt {
+        font-size: 17px;
+        padding-bottom: 10px;
+    }
+    .Create-account-txt {
+        font-size: 12px;
+        padding: 0px 0px 10px 0px;
+    }
+    .inp-fname-lanme-cnt {
+        height: 115px;
+        flex-direction: column;
+    }
+    .text-for-pass {
+        font-size: 9px;
+    }
+    .inp-pass_confrim-cnt {
+        height: 122px;
+        flex-direction: column;
+    }
+    .signin-register-boton-cnt {
+        button{
+            font-size: 10px;
+            height: 26px;
+        }
+    }
+    .img-cnt p {
+        margin: 0px;
+        font-size: 16px;
+    }
+    .login-extra-option-cnt {
+        margin-top: 11px;
+        gap: 5px
+    }
+    .extra-option-txt-cnt p {
+        font-size: 12px;
+    }
+    .mySelect-inp {
+        width: 100%;
+    }
+    .extra-option-txt-cnt {
+        gap: 7px;
+    }
+    .inp-username-cnt {
+        padding-top: 10px;
+    }
+}
+
+@media  only screen and (min-width:600px) and (max-width:1000px) {
+    .extra-option-cnt{
+        width: 100%;
+    }
+    .signup-main-cnt{
+        width: 80%;
+        margin-top: 6%;
+    }
+    .info-cnt{
+        width: 100%;
+        height: 421px;
+    }
+    .info-details_main-cnt {
+        width: 53%;
+        padding: 20px;
+        padding-right: 10px;
+        padding-left: 13px;
+    }
+    .fundo-text-txt {
+        font-size: 20px;
+        padding-bottom: 10px;
+    }
+    .Create-account-txt {
+        font-size: 14px;
+        padding: 0px 0px 10px 0px;
+    }
+    .inp-fname-lanme-cnt {
+        height: 41px;
+    }
+    .text-for-pass {
+        font-size: 11px;
+    }
+    .dummy {
+        gap: 23px
+    }
+    .inp-pass_confrim-cnt {
+        height: 50px;
+   }
+    .signin-register-boton-cnt {
+        button{
+            font-size: 10px;
+            height: 26px;
+        }
+    }
+    .img-cnt p {
+        margin: 0px;
+        font-size: 16px;
+    }
+    .login-extra-option-cnt {
+        margin-top: 11px;
+        gap: 5px
+    }
+    .extra-option-txt-cnt p {
+        font-size: 15px;
+    }
+    .mySelect-inp {
+        width: 100%;
+    }
+    .extra-option-txt-cnt {
+        gap: 7px;
+    }
+}

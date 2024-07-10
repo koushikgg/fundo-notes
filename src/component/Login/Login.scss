@@ -100,3 +100,77 @@
     border: none;
     color: rgba(53, 52, 52, 0.986);;
 }
+
+
+@media only screen and (min-width:300px) and (max-width:599px) {
+    .login-inp-main-cnt {
+        width: 60%;
+    }
+    .login-inp-main-cnt .inp-txt-main-cnt {
+        padding-top: 8px;
+        padding-bottom: 9px;
+        gap: 5px;
+    }
+    .fundo-txt-cnt {
+        font-size: 14.5px;
+    }
+    .signin-txt-cnt{
+        font-size: 16px;
+    }
+    .user-txt-cnt {
+        font-size: 11.5px;
+    }
+    .sub-cnt{
+        button{
+            width: 40%;
+            font-size: 10px;
+        }
+    }
+    .login-extra-option-cnt {
+        margin-top: 11px;
+        flex-direction: column;
+        gap: 5px
+    }
+    .extra-option-txt-cnt p {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (min-width:600px) and (max-width:1000px) {
+    .login-inp-main-cnt {
+        width: 36%;
+    }
+    .login-inp-main-cnt .inp-txt-main-cnt {
+        padding-top: 8px;
+        padding-bottom: 9px;
+        gap: 5px;
+    }
+    .fundo-txt-cnt {
+        font-size: 14.5px;
+    }
+    .signin-txt-cnt{
+        font-size: 16px;
+    }
+    .user-txt-cnt {
+        font-size: 11.5px;
+    }
+    .sub-cnt{
+        button{
+            width: 40%;
+            font-size: 10px;
+        }
+    }
+    .login-extra-option-cnt {
+        margin-top: 11px;
+        gap: 5px
+    }
+    .extra-option-txt-cnt p {
+        font-size: 12px;
+    }
+    .mySelect-inp {
+        width: 100%;
+    }
+    .extra-option-txt-cnt {
+        gap: 7px;
+    }
+}

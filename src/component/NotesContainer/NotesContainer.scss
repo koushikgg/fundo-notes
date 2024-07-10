@@ -1,0 +1,25 @@
+.note-main-cnt {
+    width: 81.6%;
+    display: flex;
+    gap: 15px;
+    padding: 75px 3% 50px 15.4%;
+    flex-wrap: wrap;
+}
+
+@media only screen and (min-width:600px) and (max-width:1000px) {
+    .note-main-cnt{
+        width: 94.5%;
+        display: flex;
+        gap: 30px;
+        padding: 36px 2% 50px 7.4%;
+    }
+}
+
+@media only screen and (min-width: 300px) and (max-width:599px){
+    .note-main-cnt{
+        width: 94.5%;
+        display: flex;
+        gap: 30px;
+        padding: 36px 2% 50px 7.4%;
+    }
+}

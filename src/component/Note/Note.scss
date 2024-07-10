@@ -1,47 +1,48 @@
-*{
+* {
     margin: 0px;
     padding: 0px;
     color: #404142;
     outline: none;
 }
-#mainnote-main-cnt{
+
+#mainnote-main-cnt {
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
-.mainnote-inner-main-cnt{
+.mainnote-inner-main-cnt {
     width: 42.25%;
     // margin-top: 35px;
     margin-left: 31%;
     border-radius: 8px;
     box-shadow: 0px 1px 5px rgba(90, 87, 87, 0.616);
     display: flex;
-    padding: 0px 0px 0px 15px ;
+    padding: 0px 0px 0px 15px;
     justify-content: space-between;
     align-items: center;
 }
 
-.mainnote-opt-maincnt{
+.mainnote-opt-maincnt {
     display: flex;
     gap: 3px;
 }
 
-.mainnote-opt-same-cnt{
+.mainnote-opt-same-cnt {
     width: 48px;
     height: 48px;
     display: flex;
     align-items: center;
 }
 
-.innernote-inner-main-cnt{
+.innernote-inner-main-cnt {
     width: 41.2%;
     margin-top: 35px;
     margin-left: 31%;
     border-radius: 8px;
     box-shadow: 0px 1px 5px rgba(90, 87, 87, 0.616);
     display: flex;
-    padding: 15px 17px 0px 15px ;
+    padding: 15px 17px 0px 15px;
     // justify-content: space-between;
     // align-items: center;
     display: flex;
@@ -49,33 +50,34 @@
     gap: 10px;
 }
 
-.innernote-main-title-cnt{
+.innernote-main-title-cnt {
     display: flex;
     justify-content: space-between;
 
-    .note-title-inp{
+    .note-title-inp {
         border: none;
         outline: none;
         font-size: 17px;
     }
 }
 
-.innernote-main-inp-cnt{
+.innernote-main-inp-cnt {
     color: #202124;
-    input{
+
+    input {
         border: none;
         height: 46px;
         font-size: 14px;
     }
 }
 
-.innernote-main-opt-cnt{
+.innernote-main-opt-cnt {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.innernote-main-opt-cnt-one{
+.innernote-main-opt-cnt-one {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -83,9 +85,84 @@
     height: 34px;
     margin: 0px 8px;
 }
-.innernote-first-opt{
+
+.innernote-first-opt {
     margin-left: 0px
 }
+
 // .css-i4bv87-MuiSvgIcon-root {
 //     font-size: 18px;
 // }
+@media only screen and (min-width:600px) and (max-width:1000px) {
+    .mainnote-inner-main-cnt {
+        width: 56.25%;
+        margin-left: 23%;
+    }
+
+    .innernote-inner-main-cnt {
+        width: 63.2%;
+        margin-top: 13px;
+        margin-left: 19%;
+    }
+
+    .innernote-main-optinner-cnt {
+        svg {
+            font-size: 17px;
+        }
+    }
+
+    .innernote-main-opt-cnt-two {
+        button {
+            font-size: 12px;
+        }
+    }
+}
+
+@media only screen and (min-width:300px) and (max-width:599px) {
+    .mainnote-inner-main-cnt {
+        width: 74.25%;
+        margin-left: 15%;
+        font-size: 13px;
+    }
+
+    .mainnote-opt-same-cnt {
+        width: 26px;
+
+        svg {
+            font-size: 17px;
+        }
+    }
+
+    .mainnote-opt-maincnt {
+        gap: 0px;
+    }
+}
+
+@media only screen and (min-width:300px) and (max-width:599px) {
+
+    .innernote-inner-main-cnt {
+        width: 72.2%;
+        margin-top: 16px;
+        margin-left: 12%;
+    }
+    .innernote-main-title-cnt .note-title-inp {
+        width: 100%;
+    }
+    .innernote-main-optinner-cnt{
+        width: 100%;
+        svg{
+            font-size: 10px;
+        }
+    }
+    .innernote-main-opt-cnt-one {
+        margin: 0px 5.8px;
+    }
+    .innernote-main-opt-cnt {
+        flex-direction: column;
+    }
+    .innernote-main-opt-cnt-two {
+        button {
+            font-size: 10px;
+        }
+    }
+}

@@ -70,7 +70,7 @@ function Note({updateList}) {
                             <input type="text" placeholder='Take a note...' onChange={(e)=> setDescription(e.target.value)}/>
                         </div>
                         <div className='innernote-main-opt-cnt'>
-                            <div>
+                            <div className='innernote-main-optinner-cnt'>
                                 <AddAlertOutlinedIcon className='innernote-main-opt-cnt-one innernote-first-opt' />
                                 <PersonAddAltOutlinedIcon className='innernote-main-opt-cnt-one' />
                                 <PaletteOutlinedIcon className='innernote-main-opt-cnt-one' />

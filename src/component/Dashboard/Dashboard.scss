@@ -21,7 +21,7 @@
 .dash-sidebar-main-div {
   position: relative;
   top: -20px;
-  width: 100px;
+  width: 72px;
   background-color: #ffffff;
   height: 100vh;
   border-right: 1px solid #dcdcdc;
@@ -35,4 +35,21 @@
   margin: 0px 7px;
   color: #5f6368;
   font-size: 24px;
+}
+
+
+.dashboard-child-main-cnt{
+  width:91%;
+}
+
+@media only screen and (min-width:300px) and (max-width:599px) {
+  .dashboard-child-main-cnt{
+    width:83%;
+  }
+  .dash-sidebar-main-div {
+    width: 56px;
+  }
+  .sidebar-opt-cnt {
+    padding-left: 10px;
+  }
 }

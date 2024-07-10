@@ -3,6 +3,7 @@ import Note from "../Note/Note"
 import Notecard from "../Notecard/Notecard"
 import { archiveNotesApi, fetchNotesApi } from "../../services/NoteService"
 import { useSelector } from "react-redux"
+import './NotesContainer.scss'
 
 function NotesContainer() {
     const [notesList, setNotesList] = useState([])
@@ -77,7 +78,7 @@ function NotesContainer() {
     return (
         <>
             <Note updateList={handleNotesList} />
-            <div style={{ width: "81.6%%", display: "flex", flexWrap: "wrap", gap: "15px", padding: "75px 3% 50px 15.4%" }}>
+            <div className="note-main-cnt">
 
                 {notesList?.map((note, key) =>
                     <Notecard noteDetails={note} updateList={handleNotesList} typeOfContent={"notesContent"} />

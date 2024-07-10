@@ -33,3 +33,11 @@
     color: #5f6368;
     font-size: 24px;
 }
+
+@media only screen and (min-width:600px) and (max-width:1000px) {
+    .dash-sidebar-main-div {
+        position: relative;
+        top: -20px;
+        width: 60px;
+    }
+}
