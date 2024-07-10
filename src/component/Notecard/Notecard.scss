@@ -1,0 +1,289 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+
+.notecard-info-main-cnt {
+    width: 20.9%;
+    height: auto;
+    display: flex;
+    align-items: flex-start;
+}
+
+.notecard-info-inner-main-cnt {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    border: 0.5px solid rgba(90, 87, 87, 0.616);
+    border-radius: 8px;
+}
+
+.notecard-info-txt-main-cnt {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    padding: 12px 14px;
+    gap: 10px;
+    word-wrap: break-word;
+    /* Ensures text wraps within the div */
+    overflow-wrap: break-word;
+    /* Ensures text wraps within the div */
+    white-space: normal;
+
+    svg {
+        font-size: 22px;
+        visibility: hidden;
+        cursor: pointer;
+    }
+
+    .notecard-title-cnt {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        span {
+            font-weight: 600;
+        }
+    }
+}
+
+.notecard-opt-main-cnt {
+    display: flex;
+
+    svg {
+        font-size: 19px;
+        visibility: hidden;
+        cursor: pointer;
+    }
+}
+
+.notecard-main-opt-cnt-one {
+    display: flex;
+    flex-direction: row;
+    margin: 0px 8.5px;
+    margin-bottom: 7px;
+    border-radius: 50%;
+}
+
+.notecard-info-inner-main-cnt:hover .notecard-opt-main-cnt svg {
+    visibility: visible;
+}
+
+.notecard-info-inner-main-cnt:hover .notecard-info-txt-main-cnt svg {
+    visibility: visible;
+}
+
+svg:hover {
+    transform: translateY(2px);
+    background-color: #f1f3f4;
+    border-radius: 50%;
+}
+
+.notecard-info-inner-main-cnt:hover {
+    box-shadow: 0px 1px 5px rgba(90, 87, 87, 0.616);
+}
+
+.css-6hp17o-MuiList-root-MuiMenu-list {
+    position:none;
+    width: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+// .css-6hp17o-MuiList-root-MuiMenu-list {}
+
+.col1 {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+    border: 1px solid #FFFFFF;
+
+}
+
+.col2 {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #FAAFA8;
+    border: 1px solid #FAAFA8;
+
+}
+
+.col3 {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #F39F76;
+    border: 1px solid #F39F76;
+
+}
+
+.col4 {
+    width: 40px;
+    height: 40px;    
+    border-radius: 50%;
+    background-color: #FFF8B8;
+    border: 1px solid #FFF8B8;
+
+}
+
+.col5 {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #E2F6D3;
+    border: 1px solid #E2F6D3;
+
+}
+
+.col6 {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #B4DDD3;
+    border: 1px solid #B4DDD3;
+}
+
+.col7 {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #D4E4ED;
+    border: 1px solid #D4E4ED;
+}
+
+.col8 {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #AECCDC;
+    border: 1px solid #AECCDC;
+}
+
+.col9 {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #D3BFDB;
+    border: 1px solid #D3BFDB;
+}
+
+.col10 {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #F6E2DD;
+    border: 1px solid #F6E2DD;
+}
+
+.col11 {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #E9E3D4;
+    border: 1px solid #E9E3D4;
+}
+
+.col12 {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #EFEFF1;
+    border: 1px solid #EFEFF1;
+}
+
+.innernotecard-inner-main-cnt{
+    width: 95%;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.innernotecard-main-title-cnt{
+    display: flex;
+    justify-content: space-between;
+
+    .notecard-title-inp{
+        border: none;
+        outline: none;
+        font-size: 17px;
+    }
+}
+
+.innernotecard-main-inp-cnt{
+    color: #202124;
+    input{
+        border: none;
+        height: 46px;
+        font-size: 14px;
+    }
+}
+.notecardcard-opt-cnt{
+    display: flex;
+} 
+
+.innernotecard-main-opt-cnt{
+    position: sticky;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.innernotecard-color-menu-opt-cnt{
+    display: flex;
+    align-items: center;
+}
+.notecard-color-optn-cnt{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+// .notecardcard-opt-cnt{
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     svg{
+//         width: 34px;
+//         font-size: 18px;
+//     }
+// }
+
+.innernotecard-main-opt-cnt-one{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 34px;
+    height: 34px;
+    margin: 0px 8px;
+}
+.innernotecard-first-opt{
+    margin-left: 0px
+}
+// .css-i4bv87-MuiSvgIcon-root {
+//     font-size: 18px;
+// }
+
+
+/* Make sure to include this in your Notecard.scss file */
+
+.notecard-color-menu {
+    width: 250px;
+    display:flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+
+.notecard-more-opt-main-cnt {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: auto;
+}

@@ -1,0 +1,38 @@
+.dashboard-container {
+  // padding-top: 75px;
+  display: flex;
+  transition: margin-left 0.3s ease;
+}
+
+.drawer-open .content-container {
+  margin-left: 300px;
+  /* Adjust to the width of your Drawer */
+}
+
+.content-container {
+  flex: 2;
+  padding: 20px;
+  padding-left: 0px;
+  /* Adjust as needed */
+  transition: margin-left 0.3s ease;
+  display: flex;
+}
+
+.dash-sidebar-main-div {
+  position: relative;
+  top: -20px;
+  width: 100px;
+  background-color: #ffffff;
+  height: 100vh;
+  border-right: 1px solid #dcdcdc;
+  display: flex;
+  flex-direction: column;
+  padding-top: 16px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dash-sidebar-opt-logo {
+  margin: 0px 7px;
+  color: #5f6368;
+  font-size: 24px;
+}

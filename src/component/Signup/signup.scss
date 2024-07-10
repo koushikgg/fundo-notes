@@ -1,0 +1,183 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+p{
+    margin: 0px;
+}
+.signup-main-cnt{
+    width: 750px;
+    height: 480px;
+    margin: auto;
+    margin-top: 6%;
+    /* padding: 60px; */
+    flex-direction: column;
+}
+.info-cnt{
+    width: 750px;
+    height: 500px;
+    border: 1px solid rgba(129, 127, 127, 0.815);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    /* gap: 40px; */
+}
+.info-details_main-cnt{
+    width: 60%;
+    height: 100%;
+    display: flex;      
+    flex-direction: column;
+    padding: 30px;
+    /* padding-top: 40px; */
+    /* align-items: space-evenly; */
+    /* gap: 7px; */
+
+}
+.dummy{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.img-cnt{
+    /* background-image: url(google_img.png); */
+    width: 325px;
+    /* height: 100%; */
+    /* background-size: cover; */
+    /* background-00position: center; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+}
+
+.password-div{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.img-cnt p{
+    margin: 0px;
+    font-size: 20px;
+}
+img{
+    width: 100%;
+}
+.username-inp-cnt{
+    height: 100px;
+}
+.inp-div{
+    width: 100%;
+    height: 48px;
+    /* border: 1px solid black; */
+}
+.fundo-text-txt{
+    color: orange;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 0px 0px 20px 0px;
+}
+.inp-type-box{
+    padding-left: 10px;
+    width: 150px;
+    height: 50px;
+    border: 1px solid rgba(129, 127, 127, 0.815);
+    border-radius: 4px;
+}
+.inp-fname-lanme-cnt{
+    height: 50px;
+    /* padding: 0px 0px 10px 0px; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 15px;
+}
+.Create-account-txt{
+    font-size: 20px;
+    padding: 0px 0px 20px 0px;
+}
+.inp-username-cnt{
+    height: 74px;
+    display: flex;
+    flex-direction: column;
+}
+.inp-username-type-box{
+    width: 97%;
+    height: 90%;
+    padding-left: 10px;
+    border: 1px solid rgba(129, 127, 127, 0.815);
+    border-radius: 4px;
+}
+.inp-pass_confrim-cnt{
+    height: 50px;
+    /* padding: 0px 0px 10px 0px; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 15px;
+}
+.text-for-pass{
+    /* padding-bottom: 20px; */
+    font-size: 12px;
+    margin-top: px;
+}
+
+.sign-in-button{
+    height: 25px;
+    color: blue;
+    background-color: white;
+    border: none;
+    font-weight: 500;
+}
+.register-button{
+    font-size: 12px;
+    background-color: blue;
+    color: azure ;
+    border: none;
+    width: 70px;
+    height: 30px;
+    border-radius: 4px;
+}
+.pass-setup-txt{
+    font-size: 12px;
+    /* padding-bottom: 30px; */
+}
+.signin-register-boton-cnt{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+.sign-in-button{
+    letter-spacing: 1px;
+}
+.extra-option-cnt{
+    width: 750px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+.extra-option-txt-cnt{
+    
+    display: flex;
+    flex-direction: row;
+    gap :15px;
+    /* width: 150px; */
+}
+.extra-option-txt-cnt p{
+    font-size: 13px;
+    color: rgb(110, 110, 110);
+}
+.extra-option-txt{
+    margin-top: 0px;
+}
+.mySelect-inp{
+    background-color: white;
+    border: none;
+    color: rgba(53, 52, 52, 0.986);;
+}
