@@ -2,14 +2,30 @@ import { useEffect, useState } from "react";
 import { trashNotesApi } from "../../services/NoteService";
 import Notecard from "../Notecard/Notecard";
 import './TrashContainer.scss'
+import { useSelector } from "react-redux";
+
+
 function TrashContainer() {
     const [notesList, setNotesList] = useState([])
+    const [originalNotesList, setOriginalNotesList] = useState([])
+    const searchQuery = useSelector((store) => store.searchNote.searchQuery)
+
     useEffect(() => {
         fetchTrash()
     }, [])
+    useEffect(() => {
+        if (!searchQuery){
+            setNotesList(originalNotesList || []);
+            return;
+        }
+        const filteredNote = originalNotesList.filter(note => note.title.includes(searchQuery)  || note.description.includes(searchQuery) )
+        setNotesList(filteredNote || []);
+    }, [searchQuery])
+
     async function fetchTrash() {
         const res = await trashNotesApi()
         console.log(res);
+        setOriginalNotesList(res?.data?.data?.data || [])
         setNotesList(res?.data?.data?.data || [])
     }
     async function handleNotesList(action, data) {

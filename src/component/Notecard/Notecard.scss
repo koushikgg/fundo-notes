@@ -279,6 +279,16 @@ svg:hover {
 
 
 /* Make sure to include this in your Notecard.scss file */
+#innernotecard-inner-modal-main-cnt{
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.innernotecard-main-title-cnt{
+    input{
+        font-weight: 600;
+    }
+}
 
 .notecard-color-menu {
     width: 250px;

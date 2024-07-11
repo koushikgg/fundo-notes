@@ -3,18 +3,31 @@ import { archiveNotesApi, updateArchiveApi } from "../../services/NoteService";
 import Notecard from "../Notecard/Notecard";
 import Note from "../Note/Note";
 import './ArchiveContainer.scss'
+import { useSelector } from "react-redux";
 
 function ArchiveContainer() {
     const [notesList, setNotesList] = useState([]);
+    const [originalNotesList, setOriginalNotesList] = useState([])
+    const searchQuery = useSelector((store) => store.searchNote.searchQuery)
     useEffect(() => {
         fetchArchive()
     }, [])
+    useEffect(() => {
+        if (!searchQuery){
+            setNotesList(originalNotesList || []);
+            return;
+        }
+        const filteredNote = originalNotesList.filter(note => note.title.includes(searchQuery)  || note.description.includes(searchQuery) )
+        setNotesList(filteredNote || []);
+    }, [searchQuery])
+
     async function fetchArchive() {
         console.log("hii archive page");
         const res = await archiveNotesApi();
         console.log(res?.data?.data?.data);
         const filteredData = res?.data?.data?.data.filter(note => note.isArchived == true && note.isDeleted !== true)
         console.log(filteredData);
+        setOriginalNotesList(filteredData)
         setNotesList(filteredData)
     }
     async function handleNotesList(action, data) {
