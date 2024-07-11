@@ -6,10 +6,16 @@ import { LoginApi } from '../../services/UserService';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
 import './Login.scss'
+import { useDispatch } from 'react-redux';
+import { setuserNameSlice } from '../../store/userNameSlice';
+
+
+
 function Login() {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const handleLogin = async () => {
         // console.log(username);
         // console.log(password);
@@ -24,7 +30,9 @@ function Login() {
         try {
             const res = await LoginApi({ email: userName, password: password });
             if (res.status === 200) {
+                // dispatch(setUserNameSlice(userName))
                 localStorage.setItem("AcessToken",res?.data?.id)
+                localStorage.setItem('userName',res?.data?.email)
                 toast.success('Login successful!');
                 navigate('/dashboard/notes');
             } 

@@ -144,8 +144,9 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    Button{
-        width: 40%;
+    align-items: center;
+    #header-logout-btn{
+        width: 60%;
     }
 }
 

@@ -10,10 +10,10 @@ const searchNoteSlice = createSlice({
       state.searchQuery = action.payload;
     },
     resetSearchQuery: (state, action) => {
-      state.searchQuery.length=0
+      state.searchQuery.length = 0
     }
-  },
+  }
 });
 
-export const { setSearchQuery, resetSearchQuery } = searchNoteSlice.actions;
+export const { setSearchQuery, resetSearchQuery, setuserName, resetuserName } = searchNoteSlice.actions;
 export default searchNoteSlice.reducer;

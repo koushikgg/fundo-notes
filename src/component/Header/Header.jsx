@@ -10,17 +10,28 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import KeepLogo from '../../assets/keep_logo.png'
 import { useState } from 'react';
 import Button from '@mui/material/Button';
-import { useDispatch } from 'react-redux';
-import { resetSearchQuery, setSearchQuery } from '../../store/searchNoteSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { resetSearchQuery, resetuserName, setSearchQuery } from '../../store/searchNoteSlice';
+import { useNavigate } from 'react-router-dom';
 
 
 
 function Header({toggleDrawer}) {
     const [showDropdown, setShowDropdown] = useState(false);
     const dispatch = useDispatch()
-
+    const navigate= useNavigate()
+    // const userName = useSelector((store) => store.userNames.userName)
+    const userName = (localStorage.getItem('userName'))
+    console.log(userName);
     const showDropdownBox = () => {
         setShowDropdown(!showDropdown);
+    }
+
+    async function logout(){
+        navigate('/');
+        localStorage.removeItem("AcessToken")
+        localStorage.removeItem("userName")
+
     }
     return (
         <>
@@ -69,9 +80,8 @@ function Header({toggleDrawer}) {
                         <AccountCircleIcon onClick={showDropdownBox} />
                         {showDropdown ? (
                             <div className="header-dropdown-box">
-                                <div className="dropdown-item"></div>
-                                <div className="dropdown-item"></div>
-                                <Button>Log Out</Button>
+                                <div className="dropdown-item"><p>User : {userName} </p></div>
+                                <Button id='header-logout-btn' onClick={logout}>Log Out</Button>
                             </div>
                         ) : ""}
                     </div>
