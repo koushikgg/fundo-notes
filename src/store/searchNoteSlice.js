@@ -9,8 +9,8 @@ const searchNoteSlice = createSlice({
     setSearchQuery: (state, action) => {
       state.searchQuery = action.payload;
     },
-    resetSearchQuery: (state, action) => {
-      state.searchQuery.length = 0
+    resetSearchQuery: (state) => {
+      state.searchQuery = ""
     }
   }
 });

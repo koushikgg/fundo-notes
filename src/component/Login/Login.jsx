@@ -32,7 +32,9 @@ function Login() {
             if (res.status === 200) {
                 // dispatch(setUserNameSlice(userName))
                 localStorage.setItem("AcessToken",res?.data?.id)
-                localStorage.setItem('userName',res?.data?.email)
+                localStorage.setItem('userFName',res?.data?.firstName)
+                localStorage.setItem('userLName',res?.data?.lastName)
+                localStorage.setItem('userEmail',res?.data?.email)
                 toast.success('Login successful!');
                 navigate('/dashboard/notes');
             } 

@@ -13,25 +13,34 @@ import Button from '@mui/material/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetSearchQuery, resetuserName, setSearchQuery } from '../../store/searchNoteSlice';
 import { useNavigate } from 'react-router-dom';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 
-
-function Header({toggleDrawer}) {
+function Header({ toggleDrawer }) {
     const [showDropdown, setShowDropdown] = useState(false);
     const dispatch = useDispatch()
-    const navigate= useNavigate()
+    const navigate = useNavigate()
     // const userName = useSelector((store) => store.userNames.userName)
-    const userName = (localStorage.getItem('userName'))
-    console.log(userName);
+    const userFName = (localStorage.getItem('userFName'))
+    const userLName = (localStorage.getItem('userLName'))
+    const userEmail = (localStorage.getItem('userEmail'))
+
+    // console.log(userName);
     const showDropdownBox = () => {
         setShowDropdown(!showDropdown);
     }
 
-    async function logout(){
+    async function logout() {
         navigate('/');
         localStorage.removeItem("AcessToken")
-        localStorage.removeItem("userName")
+        localStorage.removeItem("userFName")
+        localStorage.removeItem("userLName")
+        localStorage.removeItem("userEmail")
+    }
 
+    function clearSearchInput(){
+        dispatch(resetSearchQuery())
+        document.getElementById('header-search-inp-value-cnt').value=''
     }
     return (
         <>
@@ -56,8 +65,9 @@ function Header({toggleDrawer}) {
                                 <IconButton><SearchIcon /></IconButton>
                             </div>
                             <div className='header-search-inp-cnt'>
-                                <input type="text" placeholder='Search' onChange={(e)=>dispatch(setSearchQuery(e.target.value))}/>
+                                <input type="text" placeholder='Search' id='header-search-inp-value-cnt' onChange={(e) => dispatch(setSearchQuery(e.target.value))} />
                             </div>
+                            <CancelIcon onClick={(e) => clearSearchInput()} />
                         </div>
                     </div>
                     <div className='header-search-oth-app-cnt'>
@@ -77,10 +87,12 @@ function Header({toggleDrawer}) {
                         <IconButton><AppsIcon /></IconButton>
                     </div>
                     <div className='header-profile-logo-cnt'>
-                        <AccountCircleIcon onClick={showDropdownBox} />
+                        <div className='header-profile-logo-inner-cnt'  onClick={showDropdownBox}><p>{userFName[0]}</p></div>
                         {showDropdown ? (
                             <div className="header-dropdown-box">
-                                <div className="dropdown-item"><p>User : {userName} </p></div>
+                                <div className="dropdown-item"><p>First Name : {userFName} </p></div>
+                                <div className="dropdown-item"><p>Last Name : {userLName} </p></div>
+                                <div className="dropdown-item"><p>{userEmail} </p></div>
                                 <Button id='header-logout-btn' onClick={logout}>Log Out</Button>
                             </div>
                         ) : ""}

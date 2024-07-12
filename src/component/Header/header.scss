@@ -11,14 +11,15 @@
     display: flex;
     align-items: center;
     padding: 8px;
-    justify-content:space-between;
+    justify-content: space-between;
     // border-bottom: 1px solid black;
-    box-shadow:1px 1px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
 }
 
 .css-i4bv87-MuiSvgIcon-root {
     width: 1.09em;
 }
+
 .css-78trlr-MuiButtonBase-root-MuiIconButton-root {
     width: 48px;
     height: 48px;
@@ -32,28 +33,31 @@
     padding-right: 30px;
 }
 
-.header-menu-cnt{
+.header-menu-cnt {
     width: 20.6%;
     padding: 12px;
 
 }
 
-.header-logo-icon-txt-cnt{
+.header-logo-icon-txt-cnt {
     width: 41.8%;
     height: 44px;
     display: flex;
     align-items: center;
-    .header-logo-cnt{
+
+    .header-logo-cnt {
         width: 45%;
+
         // padding-right: 4px;
         // margin: 0px 0px 4px;
-        img{
+        img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
     }
-    span{
+
+    span {
         font-size: 22px;
         color: #5f6368;
         padding-left: 4px;
@@ -67,32 +71,34 @@
     height: 48px;
 }
 
-.header-serch-logo-cnt{
+.header-serch-logo-cnt {
     display: flex;
     width: 86.4%;
     height: 100%;
     padding-right: 35px;
 
-    .header-search-logo-inner-cnt{
+    .header-search-logo-inner-cnt {
         width: 78.1%;
         display: flex;
+        align-items: center;
         border-radius: 8px;
         background: #f1f3f4;
         padding: 0px 30px 0px 10px;
 
-        .header-search-icon{
+        .header-search-icon {
             width: 7.7%;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        .header-search-inp-cnt{
+        .header-search-inp-cnt {
             width: 88%;
-            input{
+
+            input {
                 width: 100%;
                 height: 100%;
-                background-color:#f1f3f4 ;
+                background-color: #f1f3f4;
                 border: none;
                 font-size: 18px;
                 outline: none;
@@ -101,11 +107,11 @@
     }
 }
 
-.header-search-oth-app-cnt{
+.header-search-oth-app-cnt {
     display: flex;
     width: 13.5%;
 
-    .header-opt-same-cnt{
+    .header-opt-same-cnt {
         width: 48px;
     }
 }
@@ -116,10 +122,26 @@
     width: 6.99%;
     height: 48px;
     padding-left: 30px;
-    .header-apps-logo-cnt{
+
+    .header-apps-logo-cnt {
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+}
+
+
+.header-profile-logo-inner-cnt {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    background-color: rgb(25, 25, 153);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p{
+        color: white;
+        font-size: 20px;
     }
 }
 
@@ -145,53 +167,65 @@
     flex-direction: column;
     gap: 20px;
     align-items: center;
-    #header-logout-btn{
+
+    #header-logout-btn {
         width: 60%;
     }
 }
-.header-dropdown-box:hover{
+
+.header-dropdown-box:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4)
 }
 
-@media only screen and (min-width: 600px) and (max-width:1000px){
-    .header-logo-icon-txt-cnt{
+@media only screen and (min-width: 600px) and (max-width:1000px) {
+    .header-logo-icon-txt-cnt {
         visibility: hidden;
     }
+
     .header-search-oth-app-cnt {
         display: none;
     }
+
     .header-serch-logo-cnt {
         padding-right: 0px;
     }
+
     .header-serch-main-cnt {
         width: 53%;
     }
+
     .header-apps-mian-cnt {
         padding: 0px;
         width: 15%;
     }
 }
 
-@media only screen and (min-width: 300px) and (max-width:599px){
-    .header-logo-icon-txt-cnt{
+@media only screen and (min-width: 300px) and (max-width:599px) {
+    .header-logo-icon-txt-cnt {
         visibility: hidden;
     }
+
     .header-search-oth-app-cnt {
         display: none;
     }
+
     .header-serch-logo-cnt {
         padding-right: 0px;
     }
+
     .header-serch-main-cnt {
         width: 53%;
     }
+
     .header-apps-mian-cnt {
         padding: 0px;
         width: 22%;
     }
+
     .header-serch-logo-cnt .header-search-logo-inner-cnt {
         gap: 10px;
     }
+
     .header-serch-logo-cnt .header-search-logo-inner-cnt .header-search-icon {
         width: 11.7%;
     }
