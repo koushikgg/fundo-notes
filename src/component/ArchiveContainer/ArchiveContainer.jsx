@@ -8,18 +8,23 @@ import { useSelector } from "react-redux";
 function ArchiveContainer() {
     const [notesList, setNotesList] = useState([]);
     const [originalNotesList, setOriginalNotesList] = useState([])
+    const [loading, setLoading] = useState(true);
+    const [noteFound, setNoteFound] = useState(false);
     const searchQuery = useSelector((store) => store.searchNote.searchQuery)
     useEffect(() => {
         fetchArchive()
     }, [])
     useEffect(() => {
-        if (!searchQuery){
+        if (!searchQuery) {
             setNotesList(originalNotesList || []);
             return;
         }
-        const filteredNote = originalNotesList.filter(note => note.title.includes(searchQuery)  || note.description.includes(searchQuery) )
+        const filteredNote = originalNotesList.filter(note => note.title.includes(searchQuery) || note.description.includes(searchQuery))
         setNotesList(filteredNote || []);
     }, [searchQuery])
+    useEffect(() => {
+        setNoteFound(notesList.length === 0 && !loading);
+    }, [notesList]);
 
     async function fetchArchive() {
         console.log("hii archive page");
@@ -29,6 +34,7 @@ function ArchiveContainer() {
         console.log(filteredData);
         setOriginalNotesList(filteredData)
         setNotesList(filteredData)
+        setLoading(false)
     }
     async function handleNotesList(action, data) {
         if (action == 'archive') {
@@ -55,7 +61,9 @@ function ArchiveContainer() {
     return (
         <>
             <div className="archive-main-cnt">
-                {notesList?.map((note, key) =>
+                {loading && <div className="Notes-not-found">Loading...</div>}
+                {noteFound && <div className="Notes-not-found">Notes Not Found</div>}
+                {!noteFound && !loading && notesList?.map((note, key) =>
                     <Notecard noteDetails={note} updateList={handleNotesList} typeOfContent={"archiveContent"} />
                 )}
             </div>
