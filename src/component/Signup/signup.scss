@@ -186,6 +186,9 @@ img{
     .extra-option-cnt{
         width: 100%;
     }
+    .img-cnt{
+        display: none
+    }
     .signup-main-cnt{
         width: 80%;
         margin-top: 6%;
@@ -198,7 +201,7 @@ img{
         gap: 15px
     }
     .info-details_main-cnt {
-        width: 53%;
+        width: 100%;
         padding: 20px;
         padding-right: 10px;
         padding-left: 13px;

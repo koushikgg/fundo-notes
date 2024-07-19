@@ -10,6 +10,7 @@ import TrashContainer from "./component/TrashContainer/TrashContainer";
 import ArchiveContainer from "./component/ArchiveContainer/ArchiveContainer";
 import { Provider } from "react-redux";
 import appStore from "./store/appStore";
+import LabelContainer from "./component/LabelContainer/LabelContainer";
 
 
 function RoutingModule (){
@@ -37,6 +38,10 @@ function RoutingModule (){
                 {
                     path: "trash",
                     element: <TrashContainer/>
+                },
+                {
+                    path:"label/:labelName",
+                    element:<LabelContainer />
                 }
             ]
         },
@@ -55,7 +60,6 @@ function RoutingModule (){
     ])
     return (
        <Provider store={appStore}>
-
            <RouterProvider router={appRoutes}/>
        </Provider> 
     )

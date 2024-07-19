@@ -1,12 +1,15 @@
 // store.js
 import { configureStore } from "@reduxjs/toolkit";
 import searchNoteSlice from "./searchNoteSlice";
-import userNameSlice from "./userNameSlice";
+import labelNameSlice from "./labelNameSlice";
+import noteDetailsSlice from "./noteDetailsSlice";
+
 
 const appStore = configureStore({
   reducer: {
     searchNote: searchNoteSlice,
-    userNames: userNameSlice,
+    noteDetails: noteDetailsSlice,
+    labelNames: labelNameSlice
   },
 });
 

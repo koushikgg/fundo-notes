@@ -7,8 +7,12 @@ import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
 import DeleteIcon from '@mui/icons-material/Delete';
 import './SideBar.scss';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
+
 
 function SideBar({ drawerOpen, toggleDrawer }) {
+  const labelsList = useSelector((store) => store.labelNames.labelsName)
   const navigate = useNavigate();
 
   return (
@@ -22,6 +26,14 @@ function SideBar({ drawerOpen, toggleDrawer }) {
           <NotificationsOutlinedIcon className='sidebar-opt-logo' />
           <p>Reminder</p>
         </div>
+        {
+          labelsList?.map((label, key) => (
+          <div key={key} className='sidebar-opt-cnt' onClick={() =>     navigate(`/dashboard/label/${label}`)  }>
+              <DoubleArrowIcon className='sidebar-opt-logo' />
+              <p>{label}</p>
+            </div>)
+          )}
+        
         <div className='sidebar-opt-cnt' >
           <CreateOutlinedIcon className='sidebar-opt-logo' />
           <p>Edit labels</p>

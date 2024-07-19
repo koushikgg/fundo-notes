@@ -8,18 +8,21 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import AppsIcon from '@mui/icons-material/Apps';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import KeepLogo from '../../assets/keep_logo.png'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetSearchQuery, resetuserName, setSearchQuery } from '../../store/searchNoteSlice';
 import { useNavigate } from 'react-router-dom';
 import CancelIcon from '@mui/icons-material/Cancel';
+import { addNotes } from '../../store/noteDetailsSlice';
+import { fetchNotesApi } from '../../services/NoteService';
 
 
 function Header({ toggleDrawer }) {
     const [showDropdown, setShowDropdown] = useState(false);
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const noteDeatilsList = useSelector((store) => store.noteDetails.noteDetailsList)
     // const userName = useSelector((store) => store.userNames.userName)
     const userFName = (localStorage.getItem('userFName'))
     const userLName = (localStorage.getItem('userLName'))
@@ -28,6 +31,14 @@ function Header({ toggleDrawer }) {
     // console.log(userName);
     const showDropdownBox = () => {
         setShowDropdown(!showDropdown);
+    }
+    useEffect(()=> {
+        fetchData()
+    },[])
+    async function fetchData(){
+        const list = await fetchNotesApi();
+        // console.log(...list?.data?.data?.data);
+        dispatch(addNotes(list?.data?.data?.data))
     }
 
     async function logout() {
@@ -38,10 +49,11 @@ function Header({ toggleDrawer }) {
         localStorage.removeItem("userEmail")
     }
 
-    function clearSearchInput(){
+    function clearSearchInput() {
         dispatch(resetSearchQuery())
-        document.getElementById('header-search-inp-value-cnt').value=''
+        document.getElementById('header-search-inp-value-cnt').value = ''
     }
+
     return (
         <>
             <div className='header-main-cnt'>
@@ -87,7 +99,7 @@ function Header({ toggleDrawer }) {
                         <IconButton><AppsIcon /></IconButton>
                     </div>
                     <div className='header-profile-logo-cnt'>
-                        <div className='header-profile-logo-inner-cnt'  onClick={showDropdownBox}><p>{userFName[0]}</p></div>
+                        <div className='header-profile-logo-inner-cnt' onClick={showDropdownBox}><p>{userFName[0]}</p></div>
                         {showDropdown ? (
                             <div className="header-dropdown-box">
                                 <div className="dropdown-item"><p>First Name : {userFName} </p></div>

@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { LoginApi, resetPasswordApi } from '../../services/UserService';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
-import { setuserNameSlice } from '../../store/userNameSlice';
-
+import { fetchNotesApi } from '../../services/NoteService';
+import { addNotes } from '../../store/noteDetailsSlice';
 
 
 function Login() {
@@ -45,21 +45,21 @@ function Login() {
 
     async function handleClick(action){
         if (action==='emailEntered'){
-            const res = await resetPasswordApi({email:email});
-            if (res?.success==true){
-                setConfrimPassReset('')
-            }else{
-                toast.error('Please Enter Valid Email');
+            // const res = await resetPasswordApi({email:email});
+            // if (res?.success==true){
+            //     setConfrimPassReset('')
+            // }else{
+            //     toast.error('Please Enter Valid Email');
 
-            }
+            // }
         }
         if (action==='passwordSent'){
-            const res = await resetPasswordApi({password:password});
-            if (res?.success==true){
-                setOpenPassReset('login')
-            }else{
-                toast.error('Please Enter Valid Password');
-            }
+            // const res = await resetPasswordApi({password:password});
+            // if (res?.success==true){
+            //     setOpenPassReset('login')
+            // }else{
+            //     toast.error('Please Enter Valid Password');
+            // }
         }
     }
 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
 import AddAlertOutlinedIcon from '@mui/icons-material/AddAlertOutlined';
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
@@ -8,6 +8,7 @@ import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
+import SearchIcon from '@mui/icons-material/Search';
 import MenuItem from '@mui/material/MenuItem';
 import UnarchiveOutlinedIcon from '@mui/icons-material/UnarchiveOutlined';
 import RestoreFromTrashOutlinedIcon from '@mui/icons-material/RestoreFromTrashOutlined';
@@ -22,6 +23,10 @@ import Modal from '@mui/material/Modal';
 import { changeColorApi, deleteForeverApi, updateArchiveApi, updateNoteApi, updateTrashApi } from '../../services/NoteService';
 import UndoOutlinedIcon from '@mui/icons-material/UndoOutlined';
 import RedoOutlinedIcon from '@mui/icons-material/RedoOutlined';
+import { useDispatch, useSelector } from 'react-redux';
+import AddIcon from '@mui/icons-material/Add';
+import { addLabelName } from '../../store/labelNameSlice';
+import CloseIcon from '@mui/icons-material/Close';
 
 
 const style = {
@@ -39,17 +44,35 @@ function Notecard({ noteDetails, updateList, typeOfContent }) {
     const [anchorE2, setAnchorE2] = useState(null);
     const open = Boolean(anchorEl);
     const openColorBox = Boolean(anchorE2);
+    const [anchorE3, setAnchorE3] = useState(null);
+    const openLabel = Boolean(anchorE3);
     const [showNoteCard, setShowNoteCard] = useState(true);
     const [openModal, setOpenModal] = useState(false);
     const [title, setTitle] = useState(noteDetails.title);
     const [description, setDescription] = useState(noteDetails.description)
-    
+    const [showLabelDetails, setShowLabelDetails] = useState(true)
+    const labelsList = useSelector((store) => store.labelNames.labelsName)
+    const [originalLabelList, setOriginalLabelList] = useState([labelsList])
+    const [searchLabels, setSearchLabels] = useState(labelsList)
+    const [createlabel, setCreatelabel] = useState(false)
+    const [labelName, setLabelName] = useState('')
+    const dispatch = useDispatch()
+    const [hoveredLabel, setHoveredLabel] = useState(null);
+    const [labelItemList, setLabelItemList] = useState([]);
+
 
     const handleClickMenu = (event) => {
         setAnchorEl(event.currentTarget);
     };
     const handleCloseMenu = () => {
+        setShowLabelDetails(true)
         setAnchorEl(null);
+    };
+    const handleClickLabelMenu = (event) => {
+        setAnchorE3(event.currentTarget);
+    };
+    const handleCloseLabelMenu = () => {
+        setAnchorE3(null);
     };
     const handleClickColorBox = (event) => {
         setAnchorE2(event.currentTarget);
@@ -60,6 +83,52 @@ function Notecard({ noteDetails, updateList, typeOfContent }) {
     const hanldeNoteCard = () => {
         setShowNoteCard(!showNoteCard);
     }
+    const handleMouseEnter = (key) => {
+        setHoveredLabel(key);
+    };
+    const handleMouseLeave = () => {
+        setHoveredLabel(null);
+    };
+    useEffect(() => {
+        setSearchLabels(labelsList)
+    }, [labelsList])    
+    useEffect(() => {
+        setLabelItemList(noteDetails.label)
+    }, [noteDetails.label])
+
+    function searchLabelsList(name) {
+        setLabelName(name)
+        if (!name) {
+            setSearchLabels(labelsList)
+            setCreatelabel(false)
+            return
+        }
+        const filteredNote = labelsList.filter(note => note.includes(name))
+        setSearchLabels(filteredNote || []);
+        console.log(filteredNote);
+        if (filteredNote.length == 0) {
+            console.log("no data");
+            setCreatelabel(true)
+        } else {
+            setCreatelabel(false)
+        }
+    }
+
+    const handleCheckboxChange = (event, data) => {
+        const { name, checked } = event.target;
+        console.log(name);
+    
+        const updatedData = {
+            ...data,
+            label: checked
+                ? [...data.label, name]
+                : data.label.filter(label => label !== name)
+        };
+    
+        updateList('label', updatedData);
+    };
+    
+
 
     async function handleClick(action, data, color = "#ffffff") {
         if (action === 'archive') {
@@ -70,6 +139,7 @@ function Notecard({ noteDetails, updateList, typeOfContent }) {
             updateList(action, data);
         }
         if (action === 'trash') {
+            handleCloseMenu();
             const res = await updateTrashApi({
                 "noteIdList": [data.id],
                 "isDeleted": true
@@ -96,9 +166,9 @@ function Notecard({ noteDetails, updateList, typeOfContent }) {
                 "noteIdList": [data.id],
                 "color": color
             });
-            data.color = color;
+            const updatedData = { ...data, color: color };
             console.log(data.color);
-            updateList(action, data);
+            updateList(action, updatedData);
         }
         if (action === "deleteForever") {
             console.log("step1");
@@ -114,28 +184,48 @@ function Notecard({ noteDetails, updateList, typeOfContent }) {
             await updateNoteApi({
                 "noteId": data.id,
                 "title": title,
-                "description":description
+                "description": description
             });
-            data.title=title
-            data.description=description
+            data.title = title
+            data.description = description
             updateList(action, data);
         }
-        
+        if (action === "label") {
+            setShowLabelDetails(!showLabelDetails)
+        }
+        if (action === "labelDelete"){
+            const newLabel = data.note.label.filter((note)=>note==data.key)
+            console.log(newLabel);
+            data.note.label=newLabel;
+            console.log(data.note);
+            updateList("label", data.note);
+        }
+
 
     }
+
 
     return (
         <>
             <div className='notecard-info-main-cnt'>
                 <div className='notecard-info-inner-main-cnt' style={noteDetails.color ? { backgroundColor: noteDetails.color } : { backgroundColor: "#ffffff" }}>
-                    <div className='notecard-info-txt-main-cnt' onClick={()=> setOpenModal(!openModal)}>
+                    <div className='notecard-info-txt-main-cnt' onClick={() => setOpenModal(!openModal)}>
                         <div className='notecard-title-cnt'>
-                            <span onClick={()=>setOpenModal(!openModal)}>{noteDetails?.title}</span>
+                            <span onClick={() => setOpenModal(!openModal)}>{noteDetails?.title}</span>
                             <PushPinOutlinedIcon />
                         </div>
                         <div className='notecard-notebody-cnt'>
-                            <p onClick={()=>setOpenModal(!openModal)}>{noteDetails?.description}</p>
+                            <p onClick={() => setOpenModal(!openModal)}>{noteDetails?.description}</p>
                         </div>
+                    </div>
+                    <div className='notecard-label-display-cnt'>
+                        {
+                            noteDetails.label?.map((label, key) => (
+                                <div key={key} className='notecard-label-display-name-cnt' onMouseEnter={() => handleMouseEnter(key)} onMouseLeave={handleMouseLeave}>
+                                    <p>{label}</p>
+                                    <CloseIcon id='notecard-label-display-close-cnt' style={{ display: hoveredLabel === key ? 'block' : 'none' }} onClick={() => handleClick("labelDelete", {note:noteDetails,key:key})}/>
+                                </div>)
+                            )}
                     </div>
                     <div className='notecard-opt-main-cnt'>
                         {typeOfContent === "trashContent" ? (
@@ -199,37 +289,66 @@ function Notecard({ noteDetails, updateList, typeOfContent }) {
                                         onClick={handleClickMenu}
                                     />
                                     <Menu
-                                        id="basic-menu"
                                         anchorEl={anchorEl}
                                         open={open}
                                         onClose={handleCloseMenu}
                                         MenuListProps={{
                                             'aria-labelledby': 'basic-button',
-                                        }} className='notecard-more-opt-main-cnt'
+                                        }} id='notecard-more-opt-main-cnt'
                                     >
-                                        <MenuItem onClick={() => { handleCloseMenu(); handleClick('trash', noteDetails); }}>Delete</MenuItem>
-                                        <MenuItem onClick={handleCloseMenu}>My account</MenuItem>
-                                        <MenuItem onClick={handleCloseMenu}>Logout</MenuItem>
+                                        {!showLabelDetails ?
+                                            (
+                                                <div className='notecard-label-main-cnt'>
+                                                    <div className='notecard-label-txt-cnt'>
+                                                        <p>Label note</p>
+                                                        <div className='notecard-label-inp-cnt'>
+                                                            <input type="text" placeholder='Enter label name' onChange={(e) => searchLabelsList(e.target.value)} />
+                                                            <SearchIcon id='notecard-label-search-logo' />
+                                                        </div>
+                                                    </div>
+                                                    <div className='notecard-labels-cnt'>
+                                                        {searchLabels?.map((label, key) => (
+                                                            <div key={key}>
+                                                                <input type="checkbox" name={label} id={`label-${key}`} checked={noteDetails.label.includes(label)}  value={label} onChange={(e)=>handleCheckboxChange(e,noteDetails)} />
+                                                                <label htmlFor={`label-${key}`}>{label}</label>
+                                                            </div>
+                                                        ))}
+                                                        {createlabel ?
+                                                            <div className='notecard-labels-create-label-cnt'>
+                                                                <AddIcon onClick={() => dispatch(addLabelName(labelName))} /> <p> Create "</p><p id='notecard-label-create-txt'>{labelName}</p><p>"</p>
+                                                            </div> : null
+                                                        }
+
+
+                                                    </div>
+                                                </div>
+                                            ) : (
+                                                <div className='notecard-label-main-menu-cnt'>
+                                                    <MenuItem onClick={() => { handleClick('trash', noteDetails); }}>Delete</MenuItem>
+                                                    <MenuItem onClick={(event) => { handleClick('label', noteDetails); }}>Add label</MenuItem>
+                                                </div>
+                                            )}
                                     </Menu>
                                 </div>
+
                             </>
                         )}
                     </div>
                 </div>
                 <Modal
                     open={openModal}
-                    onClose={()=>setOpenModal(!openModal)}
+                    onClose={() => setOpenModal(!openModal)}
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
                 >
                     <Box sx={style} style={noteDetails.color ? { backgroundColor: noteDetails.color } : { backgroundColor: "#ffffff" }} id="innernotecard-inner-modal-main-cnt">
                         <div className="innernotecard-inner-main-cnt">
                             <div className='innernotecard-main-title-cnt'>
-                                <input className='notecard-title-inp'  type="text" value={title} onChange={(e) => setTitle(e.target.value)} style={noteDetails.color ? { backgroundColor: noteDetails.color } : { backgroundColor: "#ffffff" }} />
-                                <PushPinOutlinedIcon style={noteDetails.color ? { backgroundColor: noteDetails.color } : { backgroundColor: "#ffffff" }}/>
+                                <input className='notecard-title-inp' type="text" value={title} onChange={(e) => setTitle(e.target.value)} style={noteDetails.color ? { backgroundColor: noteDetails.color } : { backgroundColor: "#ffffff" }} />
+                                <PushPinOutlinedIcon style={noteDetails.color ? { backgroundColor: noteDetails.color } : { backgroundColor: "#ffffff" }} />
                             </div>
                             <div className='innernotecard-main-inp-cnt'>
-                                <input type="text" value={description}  onChange={(e) => setDescription(e.target.value)} style={noteDetails.color ? { backgroundColor: noteDetails.color } : { backgroundColor: "#ffffff" }} />
+                                <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} style={noteDetails.color ? { backgroundColor: noteDetails.color } : { backgroundColor: "#ffffff" }} />
                             </div>
                             <div className='innernotecard-main-opt-cnt'>
                                 <div className='notecardcard-opt-cnt '>
@@ -237,7 +356,7 @@ function Notecard({ noteDetails, updateList, typeOfContent }) {
                                     <PersonAddAltOutlinedIcon style={noteDetails.color ? { backgroundColor: noteDetails.color } : { backgroundColor: "#ffffff" }} className='innernotecard-main-opt-cnt-one' />
                                     <div className='notecard-color-optn-cnt notecard-menu1-cnt innernotecard-color-menu-opt-cnt'>
                                         <PaletteOutlinedIcon
-                                        style={noteDetails.color ? { backgroundColor: noteDetails.color } : { backgroundColor: "#ffffff" }}
+                                            style={noteDetails.color ? { backgroundColor: noteDetails.color } : { backgroundColor: "#ffffff" }}
                                             className='innernotecard-main-opt-cnt-one'
                                             id="basic-button"
                                             aria-controls={openColorBox ? 'color-menu' : undefined}
@@ -246,14 +365,13 @@ function Notecard({ noteDetails, updateList, typeOfContent }) {
                                             onClick={handleClickColorBox}
                                         />
                                         <Menu
-                                            id="color-menu"
                                             anchorEl={anchorE2}
                                             open={openColorBox}
                                             onClose={handleCloseColorBox}
                                             MenuListProps={{
                                                 'aria-labelledby': 'basic-button',
                                             }}
-                                            className="notecard-color-menu"
+                                            id="notecard-color-menu"
                                         >
                                             <Tooltip title="Default"><div className='col1' onClick={() => { handleCloseColorBox(); handleClick('color', noteDetails, '#FFFFFF'); }}></div></Tooltip>
                                             <Tooltip title="Coral"><div className='col2' onClick={() => { handleCloseColorBox(); handleClick('color', noteDetails, '#FAAFA8'); }}></div></Tooltip>
@@ -270,13 +388,13 @@ function Notecard({ noteDetails, updateList, typeOfContent }) {
                                         </Menu>
                                     </div>
                                     <InsertPhotoOutlinedIcon style={noteDetails.color ? { backgroundColor: noteDetails.color } : { backgroundColor: "#ffffff" }} className='innernotecard-main-opt-cnt-one' />
-                                    <ArchiveOutlinedIcon style={noteDetails.color ? { backgroundColor: noteDetails.color } : { backgroundColor: "#ffffff" }}  className='innernotecard-main-opt-cnt-one' />
+                                    <ArchiveOutlinedIcon style={noteDetails.color ? { backgroundColor: noteDetails.color } : { backgroundColor: "#ffffff" }} className='innernotecard-main-opt-cnt-one' />
                                     <MoreVertOutlinedIcon style={noteDetails.color ? { backgroundColor: noteDetails.color } : { backgroundColor: "#ffffff" }} className='innernotecard-main-opt-cnt-one' />
                                     <UndoOutlinedIcon style={noteDetails.color ? { backgroundColor: noteDetails.color } : { backgroundColor: "#ffffff" }} className='innernotecard-main-opt-cnt-one' />
                                     <RedoOutlinedIcon style={noteDetails.color ? { backgroundColor: noteDetails.color } : { backgroundColor: "#ffffff" }} className='innernotecard-main-opt-cnt-one' />
                                 </div>
                                 <div className='innernotecard-main-opt-cnt-two'>
-                                    <Button variant="text" onClick={()=>handleClick('update',noteDetails)}>Close</Button>
+                                    <Button variant="text" onClick={() => handleClick('update', noteDetails)}>Close</Button>
                                 </div>
                             </div>
                         </div>

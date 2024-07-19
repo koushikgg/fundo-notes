@@ -3,15 +3,16 @@ import Note from "../Note/Note"
 import Notecard from "../Notecard/Notecard"
 import { fetchNotesApi } from "../../services/NoteService"
 import { useDispatch, useSelector } from "react-redux"
-import './NotesContainer.scss'
+// import './NotesContainer.scss'
 import * as React from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import { addNotetoRedux, updateNoteList } from "../../store/noteDetailsSlice"
 import { isDisabled } from "@testing-library/user-event/dist/utils"
+import { useParams } from "react-router-dom"
 
 
-function NotesContainer() {
+function LabelContainer() {
     const [notesList, setNotesList] = useState([])
     const [originalNotesList, setOriginalNotesList] = useState([])
     const [loading, setLoading] = useState(true);
@@ -20,6 +21,9 @@ function NotesContainer() {
     const noteDeatilsList = useSelector((store) => store.noteDetails.noteDetailsList)
     const [count, setCount] = useState([])
     const dispatch = useDispatch();
+    const { labelName } = useParams();
+
+
     // useEffect(() => {
     //     fetchData()
     // }, [])
@@ -43,10 +47,13 @@ function NotesContainer() {
     async function fetchData() {
         try {
             const res = await fetchNotesApi();
-            const filteredNote = noteDeatilsList.filter(note => note.isArchived !== true && note.isDeleted !== true)
-            console.log(filteredNote);
-            setOriginalNotesList(filteredNote)
-            setNotesList(filteredNote || []);
+            const filteredNotes = noteDeatilsList.filter(note =>
+                note.isArchived !== true &&
+                note.isDeleted !== true &&
+                note.label.includes(labelName)
+            ); console.log(filteredNotes);
+            setOriginalNotesList(filteredNotes)
+            setNotesList(filteredNotes || []);
             setLoading(false)
         } catch (err) {
             console.error("Error fetching notes:", err);
@@ -160,4 +167,4 @@ function NotesContainer() {
     )
 }
 
-export default NotesContainer;
+export default LabelContainer;

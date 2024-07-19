@@ -1,5 +1,4 @@
 import axios from "axios";
-
 const token =localStorage.getItem('AcessToken')
 const baseUrl="https://fundoonotes.incubation.bridgelabz.com/api/notes"
 const configForAddNotes = {

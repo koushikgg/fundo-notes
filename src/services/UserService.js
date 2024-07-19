@@ -14,5 +14,5 @@ export const SignupApi = async (data)=>{
     return res;
 } 
  export const resetPasswordApi = async (data) =>{
-    return await axios.post(`https://fundoonotes.incubation.bridgelabz.com/api/user/reset?access_token=${token}`,data)
+    return await axios.post(`https://fundoonotes.incubation.bridgelabz.com/api/user/reset`,data)
  }
