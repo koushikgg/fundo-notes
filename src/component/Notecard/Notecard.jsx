@@ -131,78 +131,98 @@ function Notecard({ noteDetails, updateList, typeOfContent }) {
 
 
     async function handleClick(action, data, color = "#ffffff") {
+    try {
         if (action === 'archive') {
+            updateList(action, data);
             const res = await updateArchiveApi({
                 "noteIdList": [data.id],
                 "isArchived": true
             });
-            updateList(action, data);
         }
+
         if (action === 'trash') {
             handleCloseMenu();
+            updateList(action, data);
             const res = await updateTrashApi({
                 "noteIdList": [data.id],
                 "isDeleted": true
             });
-            updateList(action, data);
         }
+
         if (action === 'restore') {
-            await updateTrashApi({
+            updateList(action, data);
+            const res = await updateTrashApi({
                 "noteIdList": [data.id],
                 "isDeleted": false
             });
-            updateList(action, data);
         }
+
         if (action === "unArchive") {
-            await updateArchiveApi({
+            updateList(action, data);
+            const res = await updateArchiveApi({
                 "noteIdList": [data.id],
                 "isArchived": false
             });
-            updateList(action, data);
         }
+
         if (action === "color") {
             console.log("step1");
-            await changeColorApi({
+            const updatedData = { ...data, color: color };
+            console.log(updatedData.color);
+            updateList(action, updatedData);
+            const res = await changeColorApi({
                 "noteIdList": [data.id],
                 "color": color
             });
-            const updatedData = { ...data, color: color };
-            console.log(data.color);
-            updateList(action, updatedData);
         }
+
         if (action === "deleteForever") {
             console.log("step1");
-            await deleteForeverApi({
+            updateList(action, data);
+            const res = await deleteForeverApi({
                 "noteIdList": [data.id],
                 "isDeleted": false
             });
-            updateList(action, data);
         }
+
         if (action === "update") {
-            setOpenModal(!openModal)
+            setOpenModal(!openModal);
             console.log("step1");
-            await updateNoteApi({
+            const updatedData = {
+                ...data,
+                title: title,
+                description:description
+            };
+            updateList(action, updatedData);
+            const res = await updateNoteApi({
                 "noteId": data.id,
                 "title": title,
                 "description": description
             });
-            data.title = title
-            data.description = description
-            updateList(action, data);
         }
+
         if (action === "label") {
-            setShowLabelDetails(!showLabelDetails)
+            setShowLabelDetails(!showLabelDetails);
         }
-        if (action === "labelDelete"){
-            const newLabel = data.note.label.filter((note)=>note==data.key)
+
+        if (action === "labelDelete") {
+            const newLabel = data.note.label.filter(note => note == data.key);
             console.log(newLabel);
-            data.note.label=newLabel;
-            console.log(data.note);
-            updateList("label", data.note);
+            const updatedData = {
+                ...data,
+                note: {
+                    ...data.note,
+                    label: newLabel
+                }
+            };            
+            console.log(updatedData);
+            updateList("label", updatedData.note);
         }
-
-
+    } catch (error) {
+        console.error("Error handling action:", action, error);
     }
+}
+
 
 
     return (

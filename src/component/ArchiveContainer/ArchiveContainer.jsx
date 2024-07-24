@@ -66,7 +66,7 @@ function ArchiveContainer() {
                     if (action === "trash") {
                         return {
                             ...note,
-                            isDeleted: false
+                            isDeleted: true
                         };
                     }
                 }

@@ -43,16 +43,18 @@ function NotesContainer() {
     async function fetchData() {
         try {
             const res = await fetchNotesApi();
-            const filteredNote = noteDeatilsList.filter(note => note.isArchived !== true && note.isDeleted !== true)
-            console.log(filteredNote);
-            setOriginalNotesList(filteredNote)
-            setNotesList(filteredNote || []);
+            const filteredNote = res?.data?.data?.data.filter(note => note.isArchived !== true && note.isDeleted !== true)
+            const newfilteredNote = noteDeatilsList.filter(note => note.isArchived !== true && note.isDeleted !== true)
+            // console.log(res?.data?.data?.data);
+            // console.log(newfilteredNote);
+            setOriginalNotesList(newfilteredNote)
+            setNotesList(newfilteredNote || []);
             setLoading(false)
         } catch (err) {
             console.error("Error fetching notes:", err);
             setLoading(false)
         }
-        console.log(notesList);
+        // console.log(notesList);
 
     }
 

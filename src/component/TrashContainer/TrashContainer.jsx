@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { trashNotesApi } from "../../services/NoteService";
 import Notecard from "../Notecard/Notecard";
@@ -37,7 +38,7 @@ function TrashContainer() {
 
     async function fetchTrash() {
         const res = await trashNotesApi()
-        const filteredNote = noteDeatilsList.filter(note => note.isArchived !== true && note.isDeleted === true)
+        const filteredNote = noteDeatilsList.filter(note => note.isDeleted === true)
         setOriginalNotesList(filteredNote || [])
         setNotesList(filteredNote || [])
         // setOriginalNotesList(res?.data?.data?.data || [])
@@ -47,13 +48,13 @@ function TrashContainer() {
     async function handleNotesList(action, data) {
         if (action === "restore" || action === "deleteForever") {
             const filteredData = notesList.filter(note => note.id !== data?.id)
-            const newfilteredNote = noteDeatilsList.filter(note => note.isArchived !== true && note.isDeleted === true)
+            const newfilteredNote = noteDeatilsList.filter(note => note.id !== data?.id)
             setNotesList(newfilteredNote)
             setOriginalNotesList(newfilteredNote)
             // setNotesList(filteredData)
             // setOriginalNotesList(filteredData)
             if (action === "deleteForever") {
-                const updatedNote = newData.find(note => note.id === data?.id);
+                const updatedNote = notesList.find(note => note.id === data?.id);
                 dispatch(removeNotes(updatedNote))
                 return
             }
@@ -69,7 +70,9 @@ function TrashContainer() {
                 return note
             });
             const updatedNote = newData.find(note => note.id === data?.id);
-            dispatch(updateNoteList(updatedNote))
+            if (updatedNote) {
+                dispatch(updateNoteList(updatedNote));
+            }
         }
     }
     return (
